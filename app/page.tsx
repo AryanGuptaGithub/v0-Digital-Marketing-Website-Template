@@ -1,3 +1,4 @@
+// app/page.tsx
 import BackgroundStripes from "@/components/background-stripes"
 import AnimatedBackground from "@/components/animated-background"
 import Navbar from "@/components/navbar"

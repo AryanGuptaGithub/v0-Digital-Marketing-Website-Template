@@ -54,7 +54,7 @@ export default function Navbar() {
             <div className="flex items-center">
               <Link href="/" className="flex items-center space-x-3">
                 <Image
-                  src="/motion-records-logo.png"
+                  src="https://res.cloudinary.com/dxwoomfzw/image/upload/v1776406466/ZAP_WMS_R_lggww1.png"
                   alt="Motion Records LLC"
                   width={120}
                   height={40}

@@ -1,3 +1,4 @@
+// app/layout.tsx
 import "./globals.css"
 import { Inter } from "next/font/google"
 import type React from "react"
@@ -19,8 +20,8 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className="dark">
-      <body className={`${inter.className} bg-background text-foreground antialiased`}>
-        <MouseMoveEffect />
+      <body className={`${inter.className} bg-black text-foreground antialiased`}>
+        {/* <MouseMoveEffect /> */}
         {children}
       </body>
     </html>
