@@ -92,7 +92,7 @@ export default function CustomerInquiry() {
             transition={{ duration: 0.6, delay: 0.2 }}
             className="bg-gray-900/50 border border-gray-800 rounded-3xl p-8 backdrop-blur-sm"
           >
-            <form onSubmit={handleSubmit} className="space-y-8">
+            <form onSubmit={handleSubmit} className="space-y-10">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 {/* Name */}
                 <div>
@@ -188,11 +188,10 @@ export default function CustomerInquiry() {
                             onClick={() => toggleService(service.id)}
                           >
                             <div
-                              className={`w-5 h-5 mr-3 flex-shrink-0 rounded border ${
-                                formData.services.includes(service.id)
-                                  ? "bg-blue-500 border-blue-500"
-                                  : "border-gray-600"
-                              } flex items-center justify-center`}
+                              className={`w-5 h-5 mr-3 flex-shrink-0 rounded border ${formData.services.includes(service.id)
+                                ? "bg-blue-500 border-blue-500"
+                                : "border-gray-600"
+                                } flex items-center justify-center`}
                             >
                               {formData.services.includes(service.id) && <Check className="h-3 w-3 text-white" />}
                             </div>

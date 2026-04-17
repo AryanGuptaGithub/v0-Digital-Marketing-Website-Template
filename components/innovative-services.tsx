@@ -147,22 +147,22 @@ export default function InnovativeServices() {
                               Instagram
                             </motion.div>
                             <motion.div
-                              className="text-white text-xs px-2 py-1 rounded bg-black"
+                              className="text-white text-xs px-2 py-1 rounded bg-red-700"
                               initial={{ width: "0%" }}
                               whileInView={{ width: "78%" }}
                               transition={{ duration: 1, delay: 1.2 }}
                               viewport={{ once: true }}
                             >
-                              TikTok
+                              Youtube
                             </motion.div>
                             <motion.div
-                              className="text-black text-xs px-2 py-1 rounded bg-yellow-400"
+                              className="text-black text-xs px-2 py-1 rounded bg-white"
                               initial={{ width: "0%" }}
                               whileInView={{ width: "65%" }}
                               transition={{ duration: 1, delay: 1.4 }}
                               viewport={{ once: true }}
                             >
-                              Snapchat
+                              Google
                             </motion.div>
                           </div>
                           <div className="flex justify-between items-center">

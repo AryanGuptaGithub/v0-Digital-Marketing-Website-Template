@@ -1,3 +1,4 @@
+// app/com
 "use client"
 
 import { Palette, Target, Camera, BarChart3, Megaphone, Globe } from "lucide-react"

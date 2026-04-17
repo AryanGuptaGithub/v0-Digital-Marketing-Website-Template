@@ -51,7 +51,8 @@ const stories = [
       leads: "+320%",
       conversion: "+180%",
     },
-    quote: "Motion didn't just increase our sales - they helped us build a brand that customers love and trust.",
+    quote:
+      "Motion didn't just increase our sales - they helped us build a brand that customers love and trust.",
     author: "Emma Thompson",
     position: "Co-Founder",
     image: "/placeholder.svg?height=400&width=600",
@@ -69,6 +70,8 @@ export default function SuccessStoriesRedesign() {
   return (
     <section className="py-24 bg-black relative">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+        {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -80,68 +83,83 @@ export default function SuccessStoriesRedesign() {
             <TrendingUp className="w-4 h-4 mr-2" />
             Real Results from Real Clients
           </div>
+
           <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white mb-6">
             Success Stories That Speak Volumes
           </h2>
+
           <p className="text-xl text-gray-400 max-w-3xl mx-auto">
             See how we've helped businesses like yours achieve remarkable growth and success.
           </p>
         </motion.div>
 
+        {/* Cards */}
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-12">
           {stories.map((story, index) => (
             <motion.div
               key={index}
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
+              whileHover={{ y: -10, scale: 1.02 }}
               transition={{ duration: 0.6, delay: index * 0.1 }}
               viewport={{ once: true }}
               onClick={() => setActiveStory(index)}
-              className={`cursor-pointer p-6 rounded-2xl border transition-all duration-300 ${
-                activeStory === index
-                  ? "bg-gradient-to-br from-blue-500/10 to-purple-500/10 border-blue-500/30"
+              className={`cursor-pointer p-6 rounded-2xl border relative overflow-hidden group transition-all duration-500 ${activeStory === index
+                  ? "bg-gradient-to-br from-blue-500/10 to-purple-500/10 border-blue-500/30 scale-[1.02] shadow-xl shadow-blue-500/10"
                   : "bg-gray-900/30 border-gray-800 hover:border-gray-700"
-              }`}
+                }`}
             >
-              <div className="flex items-center mb-4">
-                <div className="w-12 h-12 bg-gradient-to-br from-blue-500 to-purple-500 rounded-xl flex items-center justify-center text-white font-bold text-lg">
-                  {story.company.charAt(0)}
-                </div>
-                <div className="ml-4">
-                  <h3 className="text-lg font-bold text-white">{story.company}</h3>
-                  <p className="text-sm text-gray-400">{story.industry}</p>
-                </div>
+              {/* Glow Effect */}
+              <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition duration-500">
+                <div className="absolute -inset-1 bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 blur-2xl opacity-20"></div>
               </div>
 
-              <div className="grid grid-cols-3 gap-4 mb-4">
-                <div className="text-center">
-                  <div className="text-2xl font-bold text-green-400">{story.results.revenue}</div>
-                  <div className="text-xs text-gray-400">Revenue</div>
+              <div className="relative z-10">
+                <div className="flex items-center mb-4">
+                  <div className="w-12 h-12 bg-gradient-to-br from-blue-500 to-purple-500 rounded-xl flex items-center justify-center text-white font-bold text-lg">
+                    {story.company.charAt(0)}
+                  </div>
+                  <div className="ml-4">
+                    <h3 className="text-lg font-bold text-white">{story.company}</h3>
+                    <p className="text-sm text-gray-400">{story.industry}</p>
+                  </div>
                 </div>
-                <div className="text-center">
-                  <div className="text-2xl font-bold text-blue-400">{story.results.leads}</div>
-                  <div className="text-xs text-gray-400">Leads</div>
-                </div>
-                <div className="text-center">
-                  <div className="text-2xl font-bold text-purple-400">{story.results.conversion}</div>
-                  <div className="text-xs text-gray-400">Conversion</div>
-                </div>
-              </div>
 
-              <div className="flex items-center text-yellow-400 mb-2">
-                {[...Array(5)].map((_, i) => (
-                  <Star key={i} className="w-4 h-4 fill-current" />
-                ))}
-              </div>
-
-              <p className="text-gray-300 text-sm leading-relaxed mb-4">"{story.quote}"</p>
-
-              <div className="flex items-center justify-between">
-                <div>
-                  <p className="text-white font-medium text-sm">{story.author}</p>
-                  <p className="text-gray-400 text-xs">{story.position}</p>
+                <div className="grid grid-cols-3 gap-4 mb-4">
+                  <div className="text-center">
+                    <div className="text-2xl font-bold text-green-400">{story.results.revenue}</div>
+                    <div className="text-xs text-gray-400">Revenue</div>
+                  </div>
+                  <div className="text-center">
+                    <div className="text-2xl font-bold text-blue-400">{story.results.leads}</div>
+                    <div className="text-xs text-gray-400">Leads</div>
+                  </div>
+                  <div className="text-center">
+                    <div className="text-2xl font-bold text-purple-400">{story.results.conversion}</div>
+                    <div className="text-xs text-gray-400">Conversion</div>
+                  </div>
                 </div>
-                <ArrowRight className="w-5 h-5 text-gray-400" />
+
+                <div className="flex items-center text-yellow-400 mb-2">
+                  {[...Array(5)].map((_, i) => (
+                    <Star key={i} className="w-4 h-4 fill-current" />
+                  ))}
+                </div>
+
+                <p className="text-gray-300 text-sm leading-relaxed mb-4">
+                  "{story.quote}"
+                </p>
+
+                <div className="flex items-center justify-between">
+                  <div>
+                    <p className="text-white font-medium text-sm">{story.author}</p>
+                    <p className="text-gray-400 text-xs">{story.position}</p>
+                  </div>
+
+                  <motion.div whileHover={{ x: 5 }}>
+                    <ArrowRight className="w-5 h-5 text-gray-400" />
+                  </motion.div>
+                </div>
               </div>
             </motion.div>
           ))}
@@ -157,12 +175,20 @@ export default function SuccessStoriesRedesign() {
         >
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
             <div>
-              <h3 className="text-3xl font-bold text-white mb-4">{stories[activeStory].company} Case Study</h3>
-              <p className="text-gray-300 text-lg leading-relaxed mb-6">"{stories[activeStory].quote}"</p>
+              <h3 className="text-3xl font-bold text-white mb-4">
+                {stories[activeStory].company} Case Study
+              </h3>
+
+              <p className="text-gray-300 text-lg leading-relaxed mb-6">
+                "{stories[activeStory].quote}"
+              </p>
 
               <div className="space-y-4">
                 {stories[activeStory].metrics.map((metric, index) => (
-                  <div key={index} className="flex justify-between items-center p-4 bg-black/30 rounded-lg">
+                  <div
+                    key={index}
+                    className="flex justify-between items-center p-4 bg-black/30 rounded-lg"
+                  >
                     <span className="text-gray-400">{metric.label}</span>
                     <div className="flex items-center space-x-4">
                       <span className="text-red-400">{metric.before}</span>
@@ -185,6 +211,7 @@ export default function SuccessStoriesRedesign() {
             </div>
           </div>
         </motion.div>
+
       </div>
     </section>
   )

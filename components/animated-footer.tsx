@@ -80,11 +80,11 @@ export default function AnimatedFooter() {
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
-            className="space-y-8 text-center lg:text-left"
+            className="space-y-10 text-center lg:text-left"
           >
             <div className="group flex justify-center lg:justify-start">
               <Image
-                src="/motion-records-logo.png"
+                src="https://res.cloudinary.com/dxwoomfzw/image/upload/v1776406466/ZAP_WMS_R_lggww1.png"
                 alt="Motion Records LLC"
                 width={300}
                 height={100}
@@ -170,15 +170,15 @@ export default function AnimatedFooter() {
               <div className="space-y-4">
                 <div className="flex items-center space-x-3 text-gray-400 justify-center sm:justify-start">
                   <Mail className="h-5 w-5 text-blue-500" />
-                  <span>hello@motionrecords.com</span>
+                  <span>Digi.m@zapwms.com</span>
                 </div>
                 <div className="flex items-center space-x-3 text-gray-400 justify-center sm:justify-start">
                   <Phone className="h-5 w-5 text-blue-500" />
-                  <span>+1 (555) 123-4567</span>
+                  <span>+91-8652071903 </span>
                 </div>
                 <div className="flex items-center space-x-3 text-gray-400 justify-center sm:justify-start">
                   <MapPin className="h-5 w-5 text-blue-500" />
-                  <span>Los Angeles, CA</span>
+                  <span>Kandivali East, Mumbai, Maharashtra, India</span>
                 </div>
               </div>
 

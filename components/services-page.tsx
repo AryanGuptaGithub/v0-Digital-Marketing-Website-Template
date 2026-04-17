@@ -165,12 +165,12 @@ export default function ServicesPage() {
                   animate={
                     hoveredService === index
                       ? {
-                          background: [
-                            `radial-gradient(circle at 20% 50%, ${colorClasses.bg.replace("bg-", "rgba(").replace("/10", ", 0.1)")} 0%, transparent 50%)`,
-                            `radial-gradient(circle at 80% 50%, ${colorClasses.bg.replace("bg-", "rgba(").replace("/10", ", 0.1)")} 0%, transparent 50%)`,
-                            `radial-gradient(circle at 20% 50%, ${colorClasses.bg.replace("bg-", "rgba(").replace("/10", ", 0.1)")} 0%, transparent 50%)`,
-                          ],
-                        }
+                        background: [
+                          `radial-gradient(circle at 20% 50%, ${colorClasses.bg.replace("bg-", "rgba(").replace("/10", ", 0.1)")} 0%, transparent 50%)`,
+                          `radial-gradient(circle at 80% 50%, ${colorClasses.bg.replace("bg-", "rgba(").replace("/10", ", 0.1)")} 0%, transparent 50%)`,
+                          `radial-gradient(circle at 20% 50%, ${colorClasses.bg.replace("bg-", "rgba(").replace("/10", ", 0.1)")} 0%, transparent 50%)`,
+                        ],
+                      }
                       : {}
                   }
                   transition={{ duration: 3, repeat: Number.POSITIVE_INFINITY }}
@@ -280,7 +280,7 @@ export default function ServicesPage() {
 
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
               {/* Budget Slider */}
-              <div className="space-y-8">
+              <div className="space-y-10">
                 <div>
                   <label className="block text-lg font-medium text-white mb-4">Monthly Marketing Budget</label>
                   <div className="relative">
@@ -338,7 +338,7 @@ export default function ServicesPage() {
               </div>
 
               {/* Results */}
-              <div className="space-y-8">
+              <div className="space-y-10">
                 {/* Circle Chart */}
                 <div className="relative w-64 h-64 mx-auto">
                   <svg className="w-full h-full transform -rotate-90" viewBox="0 0 100 100">

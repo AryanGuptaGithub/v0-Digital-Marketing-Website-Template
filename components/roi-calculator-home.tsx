@@ -86,7 +86,7 @@ export default function ROICalculatorHome() {
 
           <div className="relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-12">
             {/* Controls */}
-            <div className="space-y-8">
+            <div className="space-y-10">
               {/* Business Type Selection */}
               <div>
                 <label className="block text-lg font-medium text-white mb-4">Select Your Business Type</label>
@@ -97,17 +97,15 @@ export default function ROICalculatorHome() {
                       whileHover={{ scale: 1.02 }}
                       whileTap={{ scale: 0.98 }}
                       onClick={() => setSelectedBusiness(business.id)}
-                      className={`p-4 rounded-xl border transition-all duration-200 text-left ${
-                        selectedBusiness === business.id
+                      className={`p-4 rounded-xl border transition-all duration-200 text-left ${selectedBusiness === business.id
                           ? "bg-blue-500/20 border-blue-500/50 text-white"
                           : "bg-gray-800/50 border-gray-700/50 text-gray-300 hover:border-gray-600/50"
-                      }`}
+                        }`}
                     >
                       <div className="flex items-center space-x-3 mb-2">
                         <div
-                          className={`p-2 rounded-lg ${
-                            selectedBusiness === business.id ? "bg-blue-500/30" : "bg-gray-700/50"
-                          }`}
+                          className={`p-2 rounded-lg ${selectedBusiness === business.id ? "bg-blue-500/30" : "bg-gray-700/50"
+                            }`}
                         >
                           {business.icon}
                         </div>
@@ -162,7 +160,7 @@ export default function ROICalculatorHome() {
             </div>
 
             {/* Results */}
-            <div className="space-y-8">
+            <div className="space-y-10">
               {/* ROI Circle */}
               <div className="relative w-48 h-48 mx-auto">
                 <svg className="w-full h-full transform -rotate-90" viewBox="0 0 100 100">
