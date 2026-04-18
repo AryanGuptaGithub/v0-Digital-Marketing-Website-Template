@@ -69,7 +69,7 @@ export default function Navbar() {
                   Services
                 </Link>
                 <Link href="/artists" className="text-sm text-gray-300 hover:text-purple-400 transition-colors">
-                  Artists
+                  Solutions
                 </Link>
                 <Link href="/success-stories" className="text-sm text-gray-300 hover:text-green-400 transition-colors">
                   Success Stories
@@ -81,9 +81,7 @@ export default function Navbar() {
             </div>
 
             <div className="hidden md:flex items-center space-x-4">
-              <Button variant="ghost" className="text-sm text-gray-300 hover:text-white">
-                Sign In
-              </Button>
+
               <Link href="/get-started">
                 <AnimatedButton size="sm" className="bg-white text-black hover:bg-gray-100">
                   Get Started

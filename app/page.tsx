@@ -5,9 +5,11 @@ import Navbar from "@/components/navbar"
 import Hero from "@/components/hero"
 import HowWeWork from "@/components/how-we-work"
 import InnovativeServices from "@/components/innovative-services"
+import ServicesPreview from "@/components/services-preview-home"
 import ROICalculatorHome from "@/components/roi-calculator-home"
 import AnimatedFooter from "@/components/animated-footer"
 import BackgroundPaths from "@/components/background-paths"
+import BrochureInfographic from "../components/brochure-infographic"
 
 export default function Home() {
   return (
@@ -21,6 +23,8 @@ export default function Home() {
         <Hero />
         <HowWeWork />
         <InnovativeServices />
+        <ServicesPreview />
+        <BrochureInfographic />
         <ROICalculatorHome />
         <AnimatedFooter />
       </div>
