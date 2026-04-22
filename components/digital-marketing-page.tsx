@@ -1,222 +1,397 @@
 "use client";
 
-import { motion } from "framer-motion";
 import { useState } from "react";
-import {
-  Megaphone,
-  Users,
-  Film,
-  MapPin,
-  Brain,
-  Sparkles,
-  Tv,
-  ChevronDown,
-  ArrowRight,
-} from "lucide-react";
-import Link from "next/link";
-import AnimatedButton from "./animated-button";
+import { motion, AnimatePresence } from "framer-motion";
+import { X } from "lucide-react";
+
+/* ================= DATA ================= */
 
 const services = [
   {
-    title: "Digital Marketing",
-    icon: <Megaphone className="w-7 h-7" />,
-    description:
-      "Complete digital strategies to grow your brand, traffic, and revenue.",
-    features: ["SEO", "Paid Ads", "Funnels", "Analytics"],
-    outcomes: ["Traffic", "Leads", "Sales"],
-    gradient: "from-blue-500/20 to-cyan-600/10",
-    border: "border-blue-500/30",
-    hover: "hover:border-blue-400/50",
-    icon_color: "text-blue-400",
-    dot: "bg-blue-500",
-    pill_bg: "bg-blue-500/10",
-    pill_text: "text-blue-300",
-  },
-  {
     title: "Influencer Marketing",
-    icon: <Users className="w-7 h-7" />,
-    description: "Leverage creators to build trust and reach new audiences.",
-    features: ["Creator Outreach", "Campaign Strategy", "UGC Content"],
-    outcomes: ["Brand Trust", "Reach", "Engagement"],
-    gradient: "from-pink-500/20 to-rose-600/10",
-    border: "border-pink-500/30",
-    hover: "hover:border-pink-400/50",
-    icon_color: "text-pink-400",
-    dot: "bg-pink-500",
-    pill_bg: "bg-pink-500/10",
-    pill_text: "text-pink-300",
+    desc: "We connect your brand with carefully selected creators who align with your audience and values. From strategy and outreach to content execution and performance tracking, we manage end-to-end influencer campaigns that build trust, expand reach, and drive real conversions at scale.",
+    best: "D2C brands, product launches, lifestyle brands",
+    details: [
+      "Influencer discovery across Instagram, YouTube, LinkedIn",
+      "End-to-end campaign management and execution",
+      "Content planning and creative direction",
+      "UGC (User Generated Content) production",
+      "Performance tracking and ROI optimization",
+    ],
   },
   {
-    title: "Motion Poster Marketing",
-    icon: <Film className="w-7 h-7" />,
-    description: "Eye-catching animated posters designed for viral campaigns.",
-    features: ["Animated Posters", "Social Media Launches", "Teasers"],
-    outcomes: ["Virality", "Attention", "Engagement"],
-    gradient: "from-purple-500/20 to-violet-600/10",
-    border: "border-purple-500/30",
-    hover: "hover:border-purple-400/50",
-    icon_color: "text-purple-400",
-    dot: "bg-purple-500",
-    pill_bg: "bg-purple-500/10",
-    pill_text: "text-purple-300",
+    title: "AI Marketing",
+    desc: "Our AI-driven marketing solutions help you automate campaigns, analyze user behavior, and optimize performance in real time. By combining data, machine learning, and creative strategy, we ensure your marketing is smarter, faster, and consistently delivering better ROI.",
+    best: "E-commerce, SaaS, scaling businesses",
+    details: [
+      "AI-driven audience targeting and segmentation",
+      "Campaign automation and optimization",
+      "Predictive analytics for better decisions",
+      "AI-generated creatives and ad copies",
+      "Performance monitoring and scaling",
+    ],
   },
   {
-    title: "Offline Marketing",
-    icon: <MapPin className="w-7 h-7" />,
-    description:
-      "Traditional marketing strategies that dominate local markets.",
-    features: ["Billboards", "Print Ads", "Events", "Activations"],
-    outcomes: ["Local Reach", "Brand Recall"],
-    gradient: "from-green-500/20 to-emerald-600/10",
-    border: "border-green-500/30",
-    hover: "hover:border-green-400/50",
-    icon_color: "text-green-400",
-    dot: "bg-green-500",
-    pill_bg: "bg-green-500/10",
-    pill_text: "text-green-300",
+    title: "AI Model Generation",
+    desc: "Create stunning, hyper-realistic product visuals using AI-generated models without the cost and complexity of traditional photoshoots. Perfect for scaling brands, this approach ensures consistency, speed, and complete creative flexibility.",
+    best: "Fashion, beauty, e-commerce brands",
+    details: [
+      "Custom AI model creation (age, ethnicity, style)",
+      "Product catalogue-ready images",
+      "Bulk image generation for scaling",
+      "Consistent branding across visuals",
+      "Faster turnaround vs traditional shoots",
+    ],
   },
   {
-    title: "AI Content & Advertising",
-    icon: <Brain className="w-7 h-7" />,
-    description: "AI-generated content and ads optimized for performance.",
-    features: ["AI Creatives", "Ad Copy", "Automation"],
-    outcomes: ["Speed", "Efficiency", "ROI"],
-    gradient: "from-yellow-500/20 to-orange-600/10",
-    border: "border-yellow-500/30",
-    hover: "hover:border-yellow-400/50",
-    icon_color: "text-yellow-400",
-    dot: "bg-yellow-500",
-    pill_bg: "bg-yellow-500/10",
-    pill_text: "text-yellow-300",
+    title: "Motion Posters",
+    desc: "We design cinematic motion posters that instantly capture attention and boost engagement across digital platforms. By combining animation, storytelling, and visual effects, we create content that stands out and drives interaction.",
+    best: "Films, events, product launches",
+    details: [
+      "High-quality motion graphics and animation",
+      "Social media optimized formats",
+      "Teaser and promotional visuals",
+      "Visual storytelling for campaigns",
+      "Platform-specific adaptations",
+    ],
   },
   {
-    title: "AI Modeling & Marketing",
-    icon: <Sparkles className="w-7 h-7" />,
-    description: "AI models and virtual influencers for futuristic branding.",
-    features: ["AI Models", "Virtual Campaigns", "Brand Visuals"],
-    outcomes: ["Innovation", "Brand Differentiation"],
-    gradient: "from-fuchsia-500/20 to-purple-600/10",
-    border: "border-fuchsia-500/30",
-    hover: "hover:border-fuchsia-400/50",
-    icon_color: "text-fuchsia-400",
-    dot: "bg-fuchsia-500",
-    pill_bg: "bg-fuchsia-500/10",
-    pill_text: "text-fuchsia-300",
+    title: "Anime & Animation",
+    desc: "Bring your brand to life with custom animation and anime-style storytelling that resonates with modern audiences. From concept to execution, we create engaging visual narratives that enhance brand recall and emotional connection.",
+    best: "Gaming, youth-focused brands, startups",
+    details: [
+      "Character design and development",
+      "2D/3D animation production",
+      "Explainer and storytelling videos",
+      "Branded animation campaigns",
+      "Creative direction and scripting",
+    ],
   },
   {
-    title: "TV & Film Advertising",
-    icon: <Tv className="w-7 h-7" />,
-    description: "Premium ad placements in TV shows and films.",
-    features: ["Spot Ads", "Brand Placement", "Media Buying"],
-    outcomes: ["Mass Reach", "Brand Authority"],
-    gradient: "from-red-500/20 to-orange-600/10",
-    border: "border-red-500/30",
-    hover: "hover:border-red-400/50",
-    icon_color: "text-red-400",
-    dot: "bg-red-500",
-    pill_bg: "bg-red-500/10",
-    pill_text: "text-red-300",
+    title: "Spot Advertising",
+    desc: "Short, high-impact advertisements crafted to capture attention within seconds and drive immediate action. These ads are optimized for performance across platforms, making them perfect for fast-moving campaigns and promotions.",
+    best: "Product launches, offers, events",
+    details: [
+      "6–30 second ad creatives",
+      "High-conversion social media ads",
+      "A/B testing for optimization",
+      "Platform-specific ad variations",
+      "Performance tracking and iteration",
+    ],
+  },
+  {
+    title: "YouTube Ads (Non-Skip)",
+    desc: "Ensure your brand message is seen with non-skippable YouTube ads designed for maximum visibility and recall. We combine strong storytelling with precise targeting to create impactful campaigns that leave a lasting impression.",
+    best: "Brand awareness, premium products",
+    details: [
+      "Non-skippable ad formats",
+      "Audience targeting and segmentation",
+      "Creative storytelling approach",
+      "Ad performance analytics",
+      "Campaign optimization strategies",
+    ],
+  },
+  {
+    title: "Brand Awareness Campaigns",
+    desc: "We design and execute multi-channel campaigns that build strong brand recognition and authority. By combining strategy, creativity, and data, we help your brand stand out and stay top-of-mind.",
+    best: "Startups, rebranding, new markets",
+    details: [
+      "Brand positioning and messaging",
+      "Cross-platform campaign execution",
+      "Creative and content strategy",
+      "Audience targeting and reach expansion",
+      "Performance tracking and reporting",
+    ],
+  },
+  {
+    title: "SEO Content Writing",
+    desc: "We create high-quality, SEO-optimized content that not only ranks on search engines but also engages users and drives conversions. Every piece is strategically crafted to bring long-term organic growth.",
+    best: "Websites, blogs, e-commerce",
+    details: [
+      "SEO blog writing and articles",
+      "Website and landing page copy",
+      "Keyword research and optimization",
+      "Product descriptions and content",
+      "Content strategy planning",
+    ],
+  },
+  {
+    title: "Wikipedia Writing",
+    desc: "Professional Wikipedia page creation backed by thorough research and strict compliance with platform guidelines. We ensure credibility, accuracy, and long-term sustainability of your page.",
+    best: "Public figures, brands, organizations",
+    details: [
+      "In-depth research and sourcing",
+      "Wikipedia-compliant content writing",
+      "Page creation and publishing",
+      "Content editing and updates",
+      "Approval process guidance",
+    ],
+  },
+  {
+    title: "Facebook Marketplace Marketing",
+    desc: "We optimize your product listings to maximize visibility, attract the right audience, and drive direct conversions. Ideal for businesses looking to generate consistent leads and sales locally.",
+    best: "Local businesses, e-commerce brands",
+    details: [
+      "Optimized product listings",
+      "SEO-driven descriptions",
+      "Lead generation strategies",
+      "Audience targeting",
+      "Conversion optimization",
+    ],
+  },
+  {
+    title: "Artist Promotion",
+    desc: "Promote your music across major platforms and reach the right audience with targeted campaigns. We help artists grow visibility, engagement, and fan base through strategic promotion.",
+    best: "Independent artists, music labels",
+    details: [
+      "Playlist pitching and placements",
+      "Social media promotions",
+      "PR and outreach campaigns",
+      "Audience targeting strategies",
+      "Growth tracking and analytics",
+    ],
+  },
+  {
+    title: "Audio / Video Promotion",
+    desc: "Boost the reach of your audio and video content across platforms with targeted strategies that increase engagement, views, and audience retention.",
+    best: "Music creators, video creators",
+    details: [
+      "Streaming platform promotions",
+      "YouTube marketing strategies",
+      "Cross-platform distribution",
+      "Audience targeting",
+      "Performance analytics",
+    ],
+  },
+  {
+    title: "Music Revenue Generation",
+    desc: "We help you monetize your music effectively across global streaming platforms, ensuring consistent revenue through optimized distribution and royalty management.",
+    best: "Artists, music producers",
+    details: [
+      "Distribution to Spotify, Apple Music, etc.",
+      "Royalty management and tracking",
+      "Monetization strategies",
+      "Content ID setup",
+      "Revenue optimization",
+    ],
+  },
+  {
+    title: "Music Video Production",
+    desc: "End-to-end production of high-quality music videos that enhance your brand and captivate your audience. From concept to final delivery, we handle everything.",
+    best: "Artists, labels",
+    details: [
+      "Concept development and scripting",
+      "Professional video shooting",
+      "Editing and post-production",
+      "Creative direction",
+      "Distribution-ready output",
+    ],
+  },
+  {
+    title: "Product Photography",
+    desc: "High-quality product visuals designed to showcase your products in the best light and increase conversions across e-commerce and marketing platforms.",
+    best: "E-commerce, brands",
+    details: [
+      "Studio product shoots",
+      "High-end retouching",
+      "Catalogue-ready images",
+      "Lighting and composition setup",
+      "Multiple angle shots",
+    ],
+  },
+  {
+    title: "Beauty Product Shoots",
+    desc: "Premium visual production focused on highlighting product details, textures, and aesthetics to create a luxurious brand perception.",
+    best: "Beauty, skincare brands",
+    details: [
+      "Macro and detail shots",
+      "Luxury styling and setup",
+      "Creative compositions",
+      "High-end visual storytelling",
+      "Brand-focused aesthetics",
+    ],
+  },
+  {
+    title: "Model Product Shoots",
+    desc: "Lifestyle shoots featuring models to create relatable and aspirational visuals that increase trust, engagement, and conversion rates.",
+    best: "Fashion, apparel brands",
+    details: [
+      "Model casting and selection",
+      "Styling and wardrobe planning",
+      "Professional shoot execution",
+      "Brand-aligned visuals",
+      "Campaign-ready assets",
+    ],
+  },
+  {
+    title: "Brand Face Shoots",
+    desc: "Develop a strong brand identity by associating a recognizable face with your business. This creates emotional connection and long-term recall.",
+    best: "Personal brands, companies",
+    details: [
+      "Face selection and casting",
+      "Brand alignment strategy",
+      "Campaign visuals creation",
+      "Consistency across marketing",
+      "Identity development",
+    ],
+  },
+  {
+    title: "Regional Marketing",
+    desc: "Localized marketing strategies tailored to different regions, languages, and cultures to maximize reach and relevance across diverse audiences.",
+    best: "Pan-India brands, local businesses",
+    details: [
+      "Regional language adaptations",
+      "Localized content creation",
+      "Cultural targeting strategies",
+      "Regional ad campaigns",
+      "Market-specific optimization",
+    ],
   },
 ];
 
-export default function DigitalMarketingServices() {
-  const [expanded, setExpanded] = useState<number | null>(null);
+/* ================= COMPONENT ================= */
+
+export default function DigitalMarketingPage() {
+  const [active, setActive] = useState<any>(null);
 
   return (
-    <section className="py-24 bg-black">
-      <div className="max-w-7xl mx-auto px-6">
-        {/* Heading */}
-        <div className="text-center mb-20">
-          <h2 className="text-5xl font-bold text-white mb-4">
-            Digital Marketing Solutions
-          </h2>
-          <p className="text-gray-400 max-w-2xl mx-auto">
-            Modern strategies powered by creativity, data, and AI.
+    <div className="bg-black text-white min-h-screen px-6 py-20">
+
+      {/* ================= HERO ================= */}
+      <div className="text-center mb-20">
+        <h1 className="text-5xl md:text-6xl font-bold mb-4">
+          Our Services
+        </h1>
+        <p className="text-gray-400 max-w-2xl mx-auto">
+          Explore all the services we offer to scale your brand.
+        </p>
+      </div>
+
+      {/* ================= GRID ================= */}
+      <div className="max-w-7xl mx-auto grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+        {services.map((s, i) => (
+          <motion.div
+            key={i}
+            whileHover={{ scale: 1.05 }}
+            onClick={() => setActive(s)}
+            className="p-5 border border-gray-800 rounded-xl bg-gray-900/50 cursor-pointer hover:border-yellow-400 transition"
+          >
+            <h3 className="font-semibold mb-2">{s.title}</h3>
+            <p className="text-sm text-gray-400">{s.desc}</p>
+          </motion.div>
+        ))}
+      </div>
+
+    <AnimatePresence>
+  {active && (
+    <motion.div
+      className="fixed inset-0 bg-black z-50 overflow-y-auto py-20  "
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+    >
+      <div className="max-w-5xl mx-auto px-6 py-10 border border-yellow-200 rounded-xl">
+
+    <div className=" flex flex-row justify-end">
+        {/* Close */}
+        <button
+          onClick={() => setActive(null)}
+          className="mb-10 text-gray-400 hover:text-red-700 border-2 rounded-lg hover:bg-red-300  px-3 py-2"
+        >
+          ✕ Close
+        </button>
+    </div>
+
+
+        {/* HERO */}
+        <div className="mb-16">
+          <h1 className="text-5xl font-bold mb-6">
+            {active.title}
+          </h1>
+
+          <p className="text-xl text-gray-400 max-w-3xl leading-relaxed">
+            {active.desc}
           </p>
         </div>
 
-        {/* Grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {services.map((service, i) => (
-            <motion.div
-              key={i}
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: i * 0.08 }}
-              whileHover={{ y: -6 }}
-              className={`relative p-7 rounded-3xl border ${service.border} ${service.hover} bg-gray-900/50 backdrop-blur group`}
-            >
-              {/* Glow */}
-              <div
-                className={`absolute inset-0 bg-gradient-to-br ${service.gradient} opacity-0 group-hover:opacity-100 transition`}
-              />
-
-              <div className="relative z-10">
-                <div className={`${service.icon_color} mb-3`}>
-                  {service.icon}
-                </div>
-
-                <h3 className="text-xl font-bold text-white mb-3">
-                  {service.title}
-                </h3>
-
-                <p className="text-gray-400 text-sm mb-5">
-                  {service.description}
-                </p>
-
-                {/* Outcomes */}
-                <div className="flex flex-wrap gap-2 mb-4">
-                  {service.outcomes.map((o) => (
-                    <span
-                      key={o}
-                      className={`text-xs px-2 py-1 rounded-full ${service.pill_bg} ${service.pill_text}`}
-                    >
-                      {o}
-                    </span>
-                  ))}
-                </div>
-
-                {/* Expand */}
-                <button
-                  onClick={() => setExpanded(expanded === i ? null : i)}
-                  className="flex items-center text-sm text-gray-400 mb-3"
-                >
-                  <ChevronDown
-                    className={`w-4 h-4 mr-2 transition ${expanded === i ? "rotate-180" : ""}`}
-                  />
-                  Details
-                </button>
-
-                {expanded === i && (
-                  <ul className="space-y-2 text-sm text-gray-300 mb-4">
-                    {service.features.map((f) => (
-                      <li key={f} className="flex items-center">
-                        <div
-                          className={`w-1.5 h-1.5 ${service.dot} rounded-full mr-2`}
-                        />
-                        {f}
-                      </li>
-                    ))}
-                  </ul>
-                )}
-
-                {/* CTA */}
-                <Link href="/contact">
-                  <AnimatedButton
-                    variant="slim"
-                    className="bg-white text-black"
-                  >
-                    <span className="flex items-center">
-                      Get Started
-                      <ArrowRight className="ml-2 w-4 h-4" />
-                    </span>
-                  </AnimatedButton>
-                </Link>
-              </div>
-            </motion.div>
-          ))}
+        {/* BEST FOR */}
+        <div className="mb-16 p-6 border border-yellow-400/30 rounded-2xl bg-yellow-400/10">
+          <h3 className="text-lg font-semibold text-yellow-300 mb-2">
+            🎯 Best For
+          </h3>
+          <p className="text-yellow-200">
+            {active.best}
+          </p>
         </div>
+
+        {/* INCLUDES */}
+        <div className="mb-20">
+          <h2 className="text-3xl font-bold mb-8">
+            What’s Included
+          </h2>
+
+          <div className="grid md:grid-cols-2 gap-6">
+            {active.details.map((d: string, i: number) => (
+              <div
+                key={i}
+                className="p-6 border border-gray-800 rounded-xl bg-gray-900/50"
+              >
+                {d}
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* BENEFITS */}
+        <div className="mb-20">
+          <h2 className="text-3xl font-bold mb-8">
+            What You Get
+          </h2>
+
+          <div className="grid md:grid-cols-3 gap-6">
+            <div className="p-6 border border-gray-800 rounded-xl">
+              🚀 Faster Growth
+            </div>
+            <div className="p-6 border border-gray-800 rounded-xl">
+              📈 More Leads
+            </div>
+            <div className="p-6 border border-gray-800 rounded-xl">
+              💰 Higher ROI
+            </div>
+          </div>
+        </div>
+
+        {/* USE CASE */}
+        <div className="mb-20">
+          <h2 className="text-3xl font-bold mb-6">
+            Use Cases
+          </h2>
+
+          <p className="text-gray-400 max-w-3xl">
+            This service is ideal for brands looking to scale quickly,
+            build strong visibility, and convert audiences into customers.
+          </p>
+        </div>
+
+        {/* CTA */}
+        <div className="text-center mt-20">
+          <h2 className="text-3xl font-bold mb-4">
+            Let’s build this for your brand
+          </h2>
+
+          <p className="text-gray-400 mb-8">
+            Get a custom strategy tailored to your business goals.
+          </p>
+
+          <button className="bg-yellow-400 text-black px-8 py-3 rounded-full font-medium hover:scale-105 transition">
+            Get Free Consultation
+          </button>
+        </div>
+
       </div>
-    </section>
+    </motion.div>
+  )}
+</AnimatePresence>
+    </div>
   );
 }
